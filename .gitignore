@@ -1,2 +1,2 @@
 .env
-.ideagit rm --cached -r .idea/
+.idea/

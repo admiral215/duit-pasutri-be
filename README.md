@@ -8,7 +8,8 @@
 
 ## ✨ Fitur
 
-- 👥 Autentikasi User
+- 👤 Autentikasi User
+- 👥 Role (admin, user)
 - 💳 Pembuatan dompet pribadi / bersama
 - 📌 Mencatat transaksi (pemasukan / pengeluaran)
 - 📅 Pencatatan dengan tanggal dan deskripsi
@@ -61,7 +62,7 @@ PORT="8000"
 
 ### 3. Jalankan Aplikasi
 ```bash
-go run main.go
+go run server.go
 ```
 
 Aplikasi akan berjalan di `http://localhost:8000/query`  
