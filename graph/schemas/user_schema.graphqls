@@ -1,0 +1,51 @@
+type UserDTO {
+    id: String!
+    name: String!
+    email : String!
+    createdAt : String!
+    updatedAt : String!
+}
+
+type LoginResponse{
+    token : String!
+    user : UserDTO!
+}
+
+type PaginatedUser {
+    page : Int!
+    limit : Int!
+    totalRows : Int!
+    totalPages : Int!
+    data : [UserDTO!]!
+}
+
+input Register{
+    name: String!
+    email: String!
+    password: String!
+    confirmPassword: String!
+}
+
+input UserUpdate {
+    id : String!
+    name : String!
+    email : String!
+}
+
+input Login {
+    email: String!
+    password: String!
+}
+
+extend type Query {
+    users: [UserDTO!]! @auth(roles: [admin])
+    usersPage (input: PaginationInput!) : PaginatedUser!
+    user(id : String!): UserDTO! @auth(roles: [admin])
+    me : UserDTO! @auth(roles: [admin,user])
+}
+
+extend type Mutation {
+    register(input: Register!): UserDTO!
+    login(input: Login!) : LoginResponse!
+    updateUser(input: UserUpdate!) : UserDTO! @auth(roles: [admin])
+}

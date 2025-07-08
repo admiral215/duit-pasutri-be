@@ -1,0 +1,30 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+scalar UUID
+
+directive @auth(
+  roles: [Role!]
+) on FIELD_DEFINITION
+
+enum Role{
+  admin
+  user
+}
+
+input PaginationInput {
+  page : Int = 1
+  limit : Int = 10
+  search : String
+  sortBy : String = "created_at"
+  sortOrder : String = "desc"
+}
+
+type Query {
+  _empty : String
+}
+
+type Mutation {
+  _empty : String
+}

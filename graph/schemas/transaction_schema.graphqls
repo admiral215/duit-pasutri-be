@@ -1,0 +1,37 @@
+type TransactionDTO {
+    id : String!
+    amount : Float!
+    description : String
+    type : String
+    account : AccountDTO!
+    category : CategoryDTO!
+    createdAt : String!
+    updatedAt : String!
+}
+
+input TransactionUpsert {
+    id : String
+    amount : Float!
+    description : String
+    type : String!
+    accountId : String!
+    categoryId : String!
+}
+
+type PaginatedTransaction{
+    page : Int!
+    limit : Int!
+    totalRows : Int!
+    totalPages : Int!
+    data : [TransactionDTO!]!
+}
+
+extend type Query {
+    myTransactionsPage(input: PaginationInput!): PaginatedTransaction!
+}
+
+extend type Mutation {
+    transactionCreate(input: TransactionUpsert!): TransactionDTO!
+    transactionUpdate(input: TransactionUpsert!): TransactionDTO!
+    transactionDelete(id: String!): TransactionDTO!
+}

@@ -1,0 +1,31 @@
+type CategoryDTO {
+    id : String!
+    name : String!
+    type : String!
+    createdAt : String
+    updatedAt : String
+}
+
+type PaginatedCategory {
+    page : Int!
+    limit : Int!
+    totalRows : Int!
+    totalPages : Int!
+    data : [CategoryDTO!]!
+}
+
+input CategoryUpsert {
+    id : String
+    name : String!
+    type : String!
+}
+
+extend type Query {
+    categoriesPage (input: PaginationInput!) : PaginatedCategory! @auth(roles: [admin])
+}
+
+extend type Mutation {
+    categoryCreate (input : CategoryUpsert!) : CategoryDTO! @auth(roles: [admin])
+    categoryUpdate (input : CategoryUpsert!) : CategoryDTO! @auth(roles: [admin])
+    categoryDelete (id : String!) : CategoryDTO! @auth(roles: [admin])
+}
